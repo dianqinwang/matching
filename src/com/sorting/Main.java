@@ -19,7 +19,7 @@ public class Main {
 		clsProduct.getFromFile(products);
 		clsListing.getFromFile(listings);
 		
-		cmpProdList();
+		clsMatching.matching(products, listings, results);
 		
 		saveToFile("results.txt",results);		
 		
@@ -27,55 +27,7 @@ public class Main {
 		return;
 	}
 	
-	public static void cmpProdList()
-	{
-		for(int i =0;i<products.size(); i++){
-			try{
-				String pstr=products.get(i).product_name;
-				pstr=pstr.toUpperCase();
-			
-				String pmfg=products.get(i).manufacturer;
-				pmfg=pmfg.toUpperCase();
-			
-				for(int j=0;j<listings.size();j++){
-					try{
-						String cstr=listings.get(j).title;
-						cstr=cstr.toUpperCase();
-				
-						String cmfg=listings.get(j).manufacturer;
-						cmfg=cmfg.toUpperCase();
-						if(cmpStrs(pstr,cstr) && cmfg.contains(pmfg)){
-							products.get(i).addStr(listings.get(j).str_json);
-						}
-					}catch(Exception e){}
-				}
-			}catch(Exception e){}
-			String pout=products.get(i).toString() +"\n";
-			results.add(pout);			
-		}
-		
-		return;
-	}
-	public static boolean cmpStrs(String sname, String stitle)
-	{
-		boolean bret=true;
-		sname=sname.toUpperCase();
-		stitle=stitle.toUpperCase();
-		
-		String[] astr=sname.split("[ \\-_]+");
 
-		boolean mret=true;
-		for(int i=0;i<astr.length; i++){
-			mret=mret && stitle.contains(astr[i]);
-		}
-		if(astr.length<=0)mret=false;
-		
-		bret=bret && mret;
-		
-				
-		return bret;
-	}
-	
 	public static void saveToFile(String fpath,ArrayList<String> arlist)
 	{
 		String fname="";
@@ -130,6 +82,8 @@ public class Main {
 		}
 		try{
 			results.clear();
+			products.clear();
+			listings.clear();
 		}catch(Exception e){
 			System.out.println(e.getMessage()); 
 		}
