@@ -130,6 +130,8 @@ public class Main {
 		}
 		try{
 			results.clear();
+			products.clear();
+			listings.clear();
 		}catch(Exception e){
 			System.out.println(e.getMessage()); 
 		}
