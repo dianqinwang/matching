@@ -50,6 +50,16 @@ public class clsListing {
 			System.out.println(e.toString());
 		}
 	}
+	public void close()
+	{
+		try{
+			title=null;
+			manufacturer=null;
+			currency=null;
+			price=null;
+			str_json=null;
+		}catch(Exception e){}
+	}
 	public static  void getFromFile(ArrayList<clsListing> listings)
 	{
 		BufferedReader reader = null;

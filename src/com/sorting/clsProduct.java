@@ -14,13 +14,11 @@ public class clsProduct {
 	public String model;
 	public String family;
 	public String announced_date;
-	public String str_json;
-	
+		
 	private ArrayList<String> arlist=new ArrayList<String>();
 	
 	public void getValues(String s)
 	{
-		str_json=s.trim();
 		try {
 			JSONParser parser=new JSONParser();		
 			JSONObject obj = (JSONObject) parser.parse(s);
@@ -79,6 +77,18 @@ public class clsProduct {
 		}catch(Exception e){}
 		sret=sret+"]}";
 		return sret;
+	}
+	
+	public void close()
+	{
+		try{
+			product_name=null;
+			manufacturer=null;
+			model=null;
+			family=null;
+			announced_date=null;
+			arlist.clear();
+		}catch(Exception e){}
 	}
 	
 	public static  void getFromFile(ArrayList<clsProduct> products)

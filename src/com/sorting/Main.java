@@ -23,6 +23,7 @@ public class Main {
 		
 		saveToFile("results.txt",results);		
 		
+		close();
 		return;
 	}
 	
@@ -111,4 +112,26 @@ public class Main {
 	   	System.out.println("Output:"+fname);
 	}
 
+	public static void close()
+	{
+		try{
+			for(int i=0;i<products.size();i++){
+				products.get(i).close();
+			}			
+		}catch(Exception e){
+			System.out.println(e.getMessage()); 
+		}
+		try{
+			for(int i=0;i<listings.size();i++){
+				listings.get(i).close();
+			}			
+		}catch(Exception e){
+			System.out.println(e.getMessage()); 
+		}
+		try{
+			results.clear();
+		}catch(Exception e){
+			System.out.println(e.getMessage()); 
+		}
+	}
 }
